@@ -1,0 +1,38 @@
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.equalTo;
+
+import java.nio.file.Files;
+
+public class BasicPost2xmlresrc {
+	
+	
+	@Test
+	public void postReqData() {
+		
+		
+		String postxmldata=GenerateStringFromResource("D:\\work\\Rest API\\postXmlData.xml");
+		RestAssured.baseURI="http://216.10.245.166";
+		//"https://maps.googleapis.com";
+		
+		given().
+		queryParam("key","AIzaSyAQj47UIuA1H0ETz8hClmxajJr9yC2iKdQ").
+		body(postxmldata).		
+					when().
+					post("maps/api/place/add/xml").
+					then().assertThat().
+					statusCode(200).
+					and().contentType(ContentType.XML).and().
+					body("status",equalTo("OK"));
+		
+	}
+	
+	public static String GenerateStringFromResource(String path) {
+		return new String(Files.readAllBytes(Paths.get(path)))
+	}
+
+}

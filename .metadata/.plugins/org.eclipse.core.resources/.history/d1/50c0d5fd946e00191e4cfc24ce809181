@@ -1,0 +1,13 @@
+import org.testng.annotations.Test;
+
+public class BasicPoat {
+	
+	
+	@Test
+	public void postReqData() {
+		
+		
+		
+	}
+
+}

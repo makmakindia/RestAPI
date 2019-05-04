@@ -1,0 +1,18 @@
+package files;
+
+import io.restassured.path.xml.XmlPath;
+
+public class ReUseMethods {
+	
+	public void rawToXml(Response r) {
+
+		String respons=r.asString();
+		
+		System.out.println(respons);
+		
+		XmlPath xp=new XmlPath(respons);
+		
+		return xp;
+	}
+
+}

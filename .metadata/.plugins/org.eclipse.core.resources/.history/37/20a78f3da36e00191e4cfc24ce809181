@@ -1,0 +1,91 @@
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import files.resources;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import files.payLoadPost;
+
+
+
+public class addPlaceDeletePlacePost {
+	
+	
+	Properties prop=new Properties();
+	@BeforeTest
+	public void getdata() throws IOException {
+		
+	
+		FileInputStream fis=new FileInputStream("C:\\Users\\ARUNM\\Rest_API\\DemoProjAPI\\src\\files\\env.properties");
+		prop.load(fis);
+		
+	}
+	
+	@Test
+	public void addDeletePlaceMethod() {
+		
+		
+		//Task 1 - Grab responce 
+		
+		
+		
+		RestAssured.baseURI=prop.getProperty("HOST");
+		//"http://216.10.245.166";
+		//"https://maps.googleapis.com";
+		
+		Response resAddPlace=given().
+		queryParam("key",prop.getProperty("KEY")).
+		body(payLoadPost.postPayLoad()).		
+					when().
+					post(resources.placePostData()).
+					then().assertThat().
+					statusCode(200).
+					and().contentType(ContentType.JSON).and().
+					body("status",equalTo("OK")).
+					extract().response();
+		
+		String resString=resAddPlace.asString();
+		
+		System.out.println("RES    : "+resString);
+		
+		
+		// Task 2 - pass response place id to delete req
+		
+		
+		JsonPath js= new JsonPath(resString);
+		String placeIdStr=js.get("place_id");
+		System.out.println(" Place Id : "+placeIdStr);
+		
+		// Task 3 - place this id to delete request
+		
+		String deleteplacebody="{"+
+			   "\"place_id\":\""+placeIdStr+"\" "+
+			    	"}";
+		
+		System.out.println("BUGGER 1 : "+deleteplacebody);
+		
+		given().
+		queryParam("key",prop.getProperty("KEY")).		
+		body(deleteplacebody).
+		when().
+		post(resources.placeDelDataResource()).
+		then().assertThat().
+		statusCode(200).
+		and().contentType(ContentType.JSON).and().
+		body("status",equalTo("OK"));
+		
+				
+		
+	}
+
+}

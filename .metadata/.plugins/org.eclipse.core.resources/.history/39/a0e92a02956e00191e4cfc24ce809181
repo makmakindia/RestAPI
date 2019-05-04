@@ -1,0 +1,17 @@
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+
+public class BasicPoat {
+	
+	
+	@Test
+	public void postReqData() {
+		
+		RestAssured.baseURI="";
+		
+		
+		
+	}
+
+}

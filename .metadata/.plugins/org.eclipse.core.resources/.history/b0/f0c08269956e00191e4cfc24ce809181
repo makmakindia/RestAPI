@@ -1,0 +1,21 @@
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+import static io.restassured.RestAssured.*;
+
+public class BasicPost {
+	
+	
+	@Test
+	public void postReqData() {
+		
+		RestAssured.baseURI="https://maps.googleapis.com";
+		
+		given().
+		QueryParam("key","AIzaSyAQj47UIuA1H0ETz8hClmxajJr9yC2iKdQ");
+				
+		
+		
+	}
+
+}

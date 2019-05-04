@@ -1,0 +1,11 @@
+package files;
+
+public class resources {
+	
+	public String placePostData() {
+		
+		String postres="maps/api/place/add/json";
+		return postres;
+	}
+
+}

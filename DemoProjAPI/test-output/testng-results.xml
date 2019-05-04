@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="2284" started-at="2019-05-04T20:17:20Z" finished-at="2019-05-04T20:17:23Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="2284" started-at="2019-05-04T20:17:20Z" finished-at="2019-05-04T20:17:23Z">
+      <class name="BasicPost2xmlresrc">
+        <test-method status="PASS" signature="postReqData()[pri:0, instance:BasicPost2xmlresrc@1bce4f0a]" name="postReqData" duration-ms="2250" started-at="2019-05-05T01:47:20Z" finished-at="2019-05-05T01:47:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- postReqData -->
+      </class> <!-- BasicPost2xmlresrc -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
